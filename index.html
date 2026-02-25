@@ -3,45 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK CAPITAL SERVICE | Microfinance</title>
+    <title>AK CAPITAL SERVICE | राजनांदगांव</title>
     <style>
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #f4f4f4; }
-        header { background-color: #004d99; color: #ffffff; padding: 1.5rem 0; text-align: center; }
-        nav { background-color: #333; color: #fff; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: #fff; text-decoration: none; padding: 10px 20px; display: inline-block; }
-        .container { width: 85%; margin: auto; padding: 20px; }
-        .section { background: #fff; padding: 25px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        h2 { color: #004d99; border-bottom: 2px solid #004d99; padding-bottom: 10px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #f0f2f5; color: #333; }
         
-        /* टीम सेक्शन स्टाइल */
+        /* हेडर और लोगो स्टाइल */
+        header { background-color: #ffffff; color: #004d99; padding: 20px 0; text-align: center; border-bottom: 3px solid #004d99; }
+        .logo-img { max-width: 150px; height: auto; margin-bottom: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
+        
+        nav { background-color: #004d99; color: #fff; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        nav a { color: #fff; text-decoration: none; padding: 8px 15px; font-weight: bold; }
+        
+        .container { width: 90%; max-width: 1000px; margin: auto; padding: 20px; }
+        .section { background: #fff; padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #004d99; }
+        h2 { color: #004d99; margin-top: 0; display: flex; align-items: center; }
+        
         .team-grid { display: flex; justify-content: space-around; gap: 20px; margin-top: 20px; }
-        .team-card { background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center; flex: 1; border: 1px solid #ddd; }
-        .team-card h3 { margin: 10px 0 5px 0; color: #333; }
-        .team-card p { margin: 0; color: #004d99; font-weight: bold; }
+        .team-card { background: #eef6ff; padding: 20px; border-radius: 10px; text-align: center; flex: 1; border: 1px dashed #004d99; }
+        .team-card h3 { margin: 5px 0; color: #333; }
+        .team-card p { margin: 0; color: #004d99; font-weight: bold; font-size: 0.9rem; }
 
-        .services-grid { display: flex; justify-content: space-between; gap: 20px; }
-        .service-card { background: #e6f2ff; padding: 20px; border-radius: 8px; flex: 1; text-align: center; }
+        .services-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; }
+        .service-card { background: #fff; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px; text-align: center; border: 1px solid #ddd; transition: 0.3s; }
+        .service-card:hover { transform: translateY(-5px); border-color: #004d99; }
         
-        /* WhatsApp बटन */
-        .whatsapp-btn { background-color: #25d366; color: white; padding: 12px 25px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 10px; }
+        .whatsapp-btn { background-color: #25d366; color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 15px; box-shadow: 0 4px 10px rgba(37,211,102,0.3); }
         
-        .form-group { margin-bottom: 15px; }
-        input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .submit-btn { background-color: #004d99; color: white; padding: 10px 20px; border: none; border-radius: 4px; width: 100%; cursor: pointer; }
+        .contact-box { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .submit-btn { background-color: #004d99; color: white; padding: 12px; border: none; border-radius: 6px; width: 100%; cursor: pointer; font-size: 1rem; font-weight: bold; }
 
-        @media(max-width: 768px) { .services-grid, .team-grid { flex-direction: column; } .container { width: 95%; } }
+        footer { background:#333; color:#fff; text-align:center; padding:20px; margin-top: 30px; }
+
+        @media(max-width: 768px) { .services-grid, .team-grid { flex-direction: column; } }
     </style>
 </head>
 <body>
 
     <header>
+        <img src="https://via.placeholder.com/150?text=AK+CAPITAL" alt="AK Capital Logo" class="logo-img">
         <h1>AK CAPITAL SERVICE</h1>
-        <p>आपकी तरक्की, हमारा लक्ष्य</p>
+        <p style="color: #666; margin: 5px 0 0 0;">सूक्ष्म वित्त से समृद्धि तक (राजनांदगांव)</p>
     </header>
 
     <nav>
         <a href="#home">होम</a>
-        <a href="#team">हमारी टीम</a>
+        <a href="#team">मैनेजमेंट</a>
         <a href="#services">सेवाएं</a>
         <a href="#contact">संपर्क</a>
     </nav>
@@ -50,11 +58,11 @@
         
         <div id="home" class="section">
             <h2>स्वागत है!</h2>
-            <p>AK CAPITAL SERVICE राजनांदगांव में आपका विश्वसनीय वित्तीय साथी है। हम कम ब्याज दरों और आसान किश्तों पर लोन प्रदान करते हैं।</p>
+            <p><strong>AK CAPITAL SERVICE</strong> राजनांदगांव, छत्तीसगढ़ में आपका भरोसेमंद साथी है। हम छोटे उद्यमियों और परिवारों को आसान और सुरक्षित ऋण सेवाएं प्रदान करके उन्हें आत्मनिर्भर बनाने में मदद करते हैं।</p>
         </div>
 
         <div id="team" class="section">
-            <h2>हमारी टीम (Management)</h2>
+            <h2>हमारी टीम</h2>
             <div class="team-grid">
                 <div class="team-card">
                     <h3>युवराज देवांगन</h3>
@@ -68,34 +76,37 @@
         </div>
 
         <div id="services" class="section">
-            <h2>हमारी सेवाएं</h2>
+            <h2>सेवाएं जो हम प्रदान करते हैं</h2>
             <div class="services-grid">
-                <div class="service-card"><h3>माइक्रो लोन</h3><p>छोटे व्यापार के लिए।</p></div>
-                <div class="service-card"><h3>ग्रुप लोन</h3><p>समूहों के लिए विशेष।</p></div>
-                <div class="service-card"><h3>पर्सनल लोन</h3><p>आपातकालीन जरूरतों के लिए।</p></div>
+                <div class="service-card"><h3>व्यापार ऋण</h3><p>छोटे व्यवसायों की वृद्धि के लिए।</p></div>
+                <div class="service-card"><h3>समूह ऋण</h3><p>महिलाओं और समूहों के लिए।</p></div>
+                <div class="service-card"><h3>व्यक्तिगत ऋण</h3><p>तुरंत आर्थिक सहायता के लिए।</p></div>
             </div>
         </div>
 
         <div id="contact" class="section">
-            <h2>संपर्क करें</h2>
-            <p><strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, राजनांदगांव, 491441</p>
-            <p><strong>मोबाइल:</strong> +91 8815719435</p>
+            <h2>संपर्क व सहायता</h2>
+            <div class="contact-box">
+                <p>📍 <strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, दिग्विजय स्टेडियम रोड, राजनांदगांव, 491441</p>
+                <p>📞 <strong>फ़ोन:</strong> +91 8815719435</p>
+                <a href="https://wa.me/918815719435" class="whatsapp-btn" target="_blank">WhatsApp पर बात करें</a>
+            </div>
             
-            <a href="https://wa.me/918815719435" class="whatsapp-btn" target="_blank">WhatsApp पर चैट करें</a>
-            
-            <h3 style="margin-top:25px;">लोन पूछताछ फॉर्म</h3>
+            <h3 style="margin-top:25px; color:#004d99;">लोन के लिए आवेदन/पूछताछ</h3>
             <form action="#">
-                <div class="form-group"><input type="text" placeholder="आपका नाम" required></div>
-                <div class="form-group"><input type="tel" placeholder="मोबाइल नंबर" required></div>
-                <div class="form-group"><input type="number" placeholder="लोन राशि (₹)" required></div>
-                <button type="submit" class="submit-btn">सबमिट करें</button>
+                <input type="text" placeholder="आपका नाम" required>
+                <input type="tel" placeholder="मोबाइल नंबर" required>
+                <input type="number" placeholder="लोन की राशि (₹)" required>
+                <textarea placeholder="लोन का कारण" rows="3"></textarea>
+                <button type="submit" class="submit-btn">आवेदन जमा करें</button>
             </form>
         </div>
 
     </div>
 
-    <footer style="background:#333; color:#fff; text-align:center; padding:15px;">
-        <p>&copy; 2026 AK CAPITAL SERVICE | संचालक: युवराज देवांगन</p>
+    <footer>
+        <p>&copy; 2026 AK CAPITAL SERVICE | संस्थापक: युवराज देवांगन</p>
+        <p style="font-size: 0.8rem; opacity: 0.7;">Anand Tower, Sahdev Nagar, Rajnandgaon (C.G.)</p>
     </footer>
 
 </body>
