@@ -6,34 +6,36 @@
     <title>AK CAPITAL SERVICE | राजनांदगांव</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #f0f2f5; color: #333; }
-        
-        header { background-color: #ffffff; color: #004d99; padding: 20px 0; text-align: center; border-bottom: 3px solid #004d99; }
-        .logo-img { max-width: 120px; height: auto; margin-bottom: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; }
-        header p { color: #004d99; font-weight: bold; margin: 5px 0 0 0; font-size: 1.1rem; }
+        header { background-color: #ffffff; color: #004d99; padding: 30px 0; text-align: center; border-bottom: 4px solid #004d99; }
+        .logo-img { max-width: 130px; height: auto; margin-bottom: 15px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; }
         
         nav { background-color: #004d99; color: #fff; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: #fff; text-decoration: none; padding: 8px 15px; font-weight: bold; }
+        nav a { color: #fff; text-decoration: none; padding: 8px 15px; font-weight: bold; font-size: 0.9rem; }
         
         .container { width: 90%; max-width: 1000px; margin: auto; padding: 20px; }
-        .section { background: #fff; padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #004d99; }
-        
-        /* पोर्टफोलियो स्टाइल */
-        .portfolio-box { background: linear-gradient(135deg, #004d99, #0073e6); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 25px; }
-        .portfolio-number { font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
-        .portfolio-label { font-size: 1.2rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+        .section { background: #fff; padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h2 { color: #004d99; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
 
-        .team-grid { display: flex; justify-content: space-around; gap: 20px; margin-top: 20px; }
-        .team-card { background: #eef6ff; padding: 20px; border-radius: 10px; text-align: center; flex: 1; border: 1px dashed #004d99; }
-        
-        .whatsapp-btn { background-color: #25d366; color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 15px; }
-        
+        .team-card { background: #f9fcff; padding: 20px; border-radius: 10px; border-left: 5px solid #004d99; margin-bottom: 15px; }
+        .team-card h3 { margin: 0; color: #333; }
+        .team-card span { color: #004d99; font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 10px; }
+        .team-card p { font-size: 0.95rem; color: #555; margin: 0; }
+
+        .product-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+        .product-card { background: #fff; border: 1px solid #004d99; padding: 20px; border-radius: 10px; flex: 1; min-width: 250px; }
+        .product-card h3 { color: #004d99; margin-top: 0; }
+        .price-tag { background: #004d99; color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+
+        .portfolio-box { background: linear-gradient(135deg, #004d99, #0073e6); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 25px; }
+        .portfolio-number { font-size: 2.8rem; font-weight: bold; margin: 10px 0; }
+
+        .whatsapp-btn { background-color: #25d366; color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: bold; margin: 15px 0; box-shadow: 0 4px 10px rgba(37,211,102,0.3); }
         .submit-btn { background-color: #004d99; color: white; padding: 12px; border: none; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; }
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
 
         footer { background:#333; color:#fff; text-align:center; padding:20px; margin-top: 30px; }
-
-        @media(max-width: 768px) { .team-grid { flex-direction: column; } }
+        @media(max-width: 768px) { .product-grid { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -41,51 +43,75 @@
     <header>
         <img src="1772023755259.png" alt="AK Capital Logo" class="logo-img">
         <h1>AK CAPITAL SERVICE</h1>
-        <p>सूक्ष्म वित्त से समृद्धि तक</p>
     </header>
 
     <nav>
-        <a href="#home">होम</a>
-        <a href="#portfolio">पोर्टफोलियो</a>
+        <a href="#about">जानकारी</a>
         <a href="#team">मैनेजमेंट</a>
+        <a href="#products">प्रोडक्ट्स</a>
+        <a href="#portfolio">पोर्टफोलियो</a>
         <a href="#contact">संपर्क</a>
     </nav>
 
     <div class="container">
         
-        <div id="home" class="section">
-            <h2>हमारे बारे में</h2>
-            <p><strong>AK CAPITAL SERVICE</strong> राजनांदगांव का एक उभरता हुआ वित्तीय संस्थान है। हमारा उद्देश्य छोटे व्यापारियों और मेहनती परिवारों को सही समय पर वित्तीय सहायता प्रदान करना है।</p>
-        </div>
-
-        <div id="portfolio" class="portfolio-box">
-            <div class="portfolio-label">वर्तमान लोन पोर्टफोलियो</div>
-            <div class="portfolio-number">₹ 1,70,500/-</div>
-            <p>भरोसे और विकास का प्रतीक</p>
+        <div id="about" class="section">
+            <h2>कंपनी की जानकारी</h2>
+            <p><strong>AK CAPITAL SERVICE</strong> राजनांदगांव (छत्तीसगढ़) की एक प्रमुख वित्तीय संस्थान है। हम छोटे व्यापारियों और परिवारों को पारदर्शी तरीके से वित्तीय सहायता प्रदान करते हैं।</p>
         </div>
 
         <div id="team" class="section">
-            <h2>मैनेजमेंट टीम</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <h3>युवराज देवांगन</h3>
-                    <p>Co-founder & CEO</p>
+            <h2>मैनेजिंग टीम</h2>
+            <div class="team-card">
+                <h3>युवराज देवांगन</h3>
+                <span>Co-founder & CEO</span>
+                <p>15 महीने का <strong>Svasti Microfinance</strong> (CRO Post) में कार्य अनुभव।</p>
+            </div>
+            <div class="team-card">
+                <h3>चंद्रभान देवांगन</h3>
+                <span>Co-founder & CFO</span>
+                <p>2 साल का कैमरा शूटिंग और मैनेजमेंट अनुभव।</p>
+            </div>
+        </div>
+
+        <div id="products" class="section">
+            <h2>लोन प्रोडक्ट्स</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="price-tag">Emergency Loan</div>
+                    <h3>निधि (Nidhi)</h3>
+                    <p><strong>अवधि:</strong> 1 महीना | <strong>ब्याज:</strong> 10% Flat</p>
                 </div>
-                <div class="team-card">
-                    <h3>चंद्रभान देवांगन</h3>
-                    <p>CFO</p>
+                <div class="product-card">
+                    <div class="price-tag">Short Term Loan</div>
+                    <h3>स्वाति (Swati)</h3>
+                    <p><strong>अवधि:</strong> 6 महीने | <strong>ब्याज:</strong> 7% Reducing</p>
                 </div>
             </div>
         </div>
 
+        <div id="vision" class="section">
+            <h2>हमारा उद्देश्य</h2>
+            <p>स्थानीय व्यापार को बढ़ावा देना और आसान लोन प्रक्रिया से आम लोगों की मदद करना ही हमारा लक्ष्य है।</p>
+        </div>
+
+        <div id="portfolio" class="portfolio-box">
+            <div style="text-transform: uppercase; letter-spacing: 1px;">वर्तमान लोन पोर्टफोलियो</div>
+            <div class="portfolio-number">₹ 1,70,500/-</div>
+            <p>भरोसेमंद वित्तीय सेवा</p>
+        </div>
+
         <div id="contact" class="section">
-            <h2>संपर्क व सहायता</h2>
-            <p>📍 <strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, राजनांदगांव (C.G.)</p>
-            <p>📞 <strong>फ़ोन:</strong> +91 8815719435</p>
-            <a href="https://wa.me/918815719435" class="whatsapp-btn" target="_blank">WhatsApp पर बात करें</a>
+            <h2>संपर्क एवं सहायता</h2>
+            <p>📍 <strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, राजनांदगांव, 491441</p>
+            <hr>
+            <p>👤 <strong>युवराज देवांगन (CEO)</strong><br>📞 7038164867 | 📧 dewanganyuraj223@gmail.com</p>
+            <p>👤 <strong>चंद्रभान देवांगन (CFO)</strong><br>📞 8815719435 | 📧 nitin.akcapital2025@gmail.com</p>
             
-            <h3 style="margin-top:25px; color:#004d99;">लोन पूछताछ फॉर्म</h3>
-            <form action="#">
+            <a href="https://wa.me/917038164867" class="whatsapp-btn" target="_blank">WhatsApp Chat</a>
+            
+            <h3 style="margin-top:20px;">पूछताछ फॉर्म</h3>
+            <form>
                 <input type="text" placeholder="आपका नाम" required>
                 <input type="tel" placeholder="मोबाइल नंबर" required>
                 <input type="number" placeholder="लोन राशि (₹)" required>
@@ -96,7 +122,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 AK CAPITAL SERVICE | संचालक: युवराज देवांगन</p>
+        <p>&copy; 2026 AK CAPITAL SERVICE | राजनांदगांव</p>
     </footer>
 
 </body>
