@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Portal | AK CAPITAL</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #004d99; --secondary: #0073e6; --accent: #e67e22; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+        .page { padding: 20px; max-width: 480px; margin: auto; min-height: 90vh; }
+        .hidden { display: none; }
+        
+        /* लॉगिन कार्ड */
+        .auth-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top: 50px; text-align: center; }
+        .auth-card img { width: 80px; margin-bottom: 15px; border-radius: 50%; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-main { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-main:active { transform: scale(0.98); }
+
+        /* होम पेज स्टाइल */
+        .header { background: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .investor-card { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 25px; border-radius: 20px; margin-top: 20px; text-align: left; }
+        .amount-big { font-size: 2.4rem; font-weight: bold; margin: 10px 0; }
+        
+        /* फ्लोटिंग बटन */
+        .fab { position: fixed; bottom: 30px; right: 20px; background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; }
+
+        /* सेटिंग्स मेनू */
+        .menu-box { background: white; border-radius: 15px; padding: 15px; margin-top: 20px; text-align: left; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+    <div id="loginPage" class="page">
+        <div class="auth-card">
+            <img src="1772023755259.png" alt="Logo">
+            <h2 style="color: var(--primary); margin: 0;">AK CAPITAL</h2>
+            <p style="color: #666;">इन्वेस्टर पोर्टल</p>
+            <input type="email" id="email" placeholder="Email ID (जैसे: test@gmail.com)">
+            <input type="password" id="password" placeholder="Password (जैसे: 1234)">
+            <button class="btn-main" onclick="handleLogin()">प्रवेश करें</button>
+            <p id="loginError" style="color: red; font-size: 0.8rem; margin-top: 10px; display: none;">गलत ईमेल या पासवर्ड!</p>
+        </div>
+    </div>
+
+    <div id="homePage" class="page hidden">
+        <div class="header">
+            <h3 style="color: var(--primary); margin: 0;">AK CAPITAL SERVICE</h3>
+            <i class="fas fa-cog" onclick="showPage('settingsPage')" style="font-size: 1.5rem; color: #555; cursor: pointer;"></i>
+        </div>
+
+        <div id="reportArea">
+            <div class="investor-card">
+                <p style="margin: 0; opacity: 0.9;">नमस्ते,</p>
+                <h3 id="invName" style="margin: 5px 0 15px 0;">...</h3>
+                <small>आपका कुल निवेश</small>
+                <div class="amount-big" id="invAmount">₹ 0</div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
+                    <span><i class="far fa-calendar-alt"></i> अवधि: <span id="invDays">0</span> दिन</span>
+                    <span><i class="fas fa-hand-holding-usd"></i> ब्याज: <span id="invInterest">₹ 0</span></span>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 15px; border-radius: 15px; margin-top: 20px; border-left: 5px solid var(--accent);">
+                <p style="margin: 0; font-size: 0.8rem; color: #666;">कंपनी का कुल पोर्टफोलियो</p>
+                <h3 style="margin: 5px 0; color: var(--primary);">₹ 1,70,500.00</h3>
+            </div>
+        </div>
+
+        <button class="btn-main" style="margin-top: 25px; background: var(--accent);" onclick="downloadPDF()">
+            <i class="fas fa-file-pdf"></i> रिपोर्ट डाउनलोड करें (PDF)
+        </button>
+
+        <div class="fab" onclick="showPage('addInvestPage')">
+            <i class="fas fa-plus"></i>
+        </div>
+    </div>
+
+    <div id="settingsPage" class="page hidden">
+        <div class="header">
+            <i class="fas fa-arrow-left" onclick="showPage('homePage')" style="cursor: pointer;"></i>
+            <h3 style="margin: 0;">सेटिंग्स</h3>
+        </div>
+        <div class="menu-box">
+            <p><strong>प्रोफ़ाइल अपडेट</strong></p>
+            <input type="text" placeholder="नया ईमेल">
+            <input type="password" placeholder="नया पासवर्ड">
+            <button class="btn-main" onclick="alert('अपडेट के लिए अनुरोध भेजा गया!')">अपडेट करें</button>
+            <hr>
+            <button class="btn-main" style="background: #d9534f;" onclick="alert('विथड्रॉल अनुरोध CEO युवराज जी को भेज दिया गया है।')">पूँजी निकालें (Withdraw)</button>
+            <button class="btn-main" style="background: #666; margin-top: 10px;" onclick="location.reload()">लॉगआउट</button>
+        </div>
+    </div>
+
+    <div id="addInvestPage" class="page hidden">
+        <div class="header">
+            <i class="fas fa-arrow-left" onclick="showPage('homePage')" style="cursor: pointer;"></i>
+            <h3 style="margin: 0;">नया निवेश करें</h3>
+        </div>
+        <div class="auth-card" style="margin-top: 20px;">
+            <p>आप कितनी और राशि निवेश करना चाहते हैं?</p>
+            <input type="number" id="newCapital" placeholder="राशि (₹)">
+            <button class="btn-main" onclick="alert('निवेश का आवेदन प्राप्त हुआ! हम आपसे जल्द संपर्क करेंगे।'); showPage('homePage')">आवेदन भेजें</button>
+        </div>
+    </div>
+
+    <script>
+        // आपका CSV लिंक
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRSyZVa-B58qEAnh5LdBerWDHjgdw6MB6fVPUex709ihZvG7O9wd1Ye2EltPOoBRYrQ-EbBRkWMSK12/pub?output=csv';
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function handleLogin() {
+            const emailInp = document.getElementById('email').value.trim();
+            const passInp = document.getElementById('password').value.trim();
+
+            Papa.parse(sheetURL, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    const users = results.data;
+                    // Google Sheet के कॉलम नाम: Email, Password, Name, InvestedAmount, Days, Interest
+                    const user = users.find(u => u.Email === emailInp && String(u.Password) === passInp);
+
+                    if (user) {
+                        document.getElementById('invName').innerText = user.Name;
+                        document.getElementById('invAmount').innerText = '₹ ' + Number(user.InvestedAmount).toLocaleString();
+                        document.getElementById('invDays').innerText = user.Days;
+                        document.getElementById('invInterest').innerText = '₹ ' + Number(user.Interest).toLocaleString();
+                        showPage('homePage');
+                    } else {
+                        document.getElementById('loginError').style.display = 'block';
+                    }
+                }
+            });
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('reportArea');
+            const opt = {
+                margin: 0.5,
+                filename: 'AK_Capital_Report.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 3 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
