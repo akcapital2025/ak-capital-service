@@ -8,13 +8,16 @@
     <style>
         :root { --primary: #004d99; --secondary: #25D366; --accent: #e67e22; --bg: #f0f2f5; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg); }
-        .header { background: var(--primary); color: white; padding: 20px; text-align: center; position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; }
+        .header { background: var(--primary); color: white; padding: 20px; text-align: center; position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
         .container { width: 90%; max-width: 450px; margin: 25px auto; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; position: relative; }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
         .btn { background: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .data-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .plus-btn { position: fixed; bottom: 30px; right: 25px; background: var(--secondary); color: white; width: 60px; height: 60px; border-radius: 50%; font-size: 35px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: none; }
+        
+        /* प्लस बटन और फॉर्म (Modal) */
+        .plus-btn { position: fixed; bottom: 30px; right: 25px; background: var(--secondary); color: white; width: 60px; height: 60px; border-radius: 50%; font-size: 35px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: none; z-index: 999; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
         .hidden { display: none; }
     </style>
 </head>
@@ -31,20 +34,21 @@
             <h3 style="text-align:center; color:var(--primary);">लॉगिन करें</h3>
             <input type="email" id="email" placeholder="ईमेल आईडी">
             <input type="password" id="password" placeholder="पासवर्ड">
-            <button class="btn" onclick="login()">Login</button>
+            <button class="btn" onclick="login()">लॉगिन करें</button>
         </div>
 
         <div id="dashboardArea" class="hidden">
             <div class="card" style="border-top: 5px solid var(--accent);">
                 <h3 id="uName" style="color:var(--primary);">नमस्ते!</h3>
-                <p style="font-size:13px; color:#666;">AK CAPITAL SERVICE में आपका स्वागत है।</p>
+                <p style="font-size:13px; color:#666;">"AK CAPITAL SERVICE पर आपके विश्वास के लिए धन्यवाद।"</p>
                 <hr>
                 <div class="data-row"><span>💰 कुल निवेश:</span> <strong id="uAmt">₹0</strong></div>
                 <div class="data-row"><span>📅 अवधि:</span> <strong id="uDays">0 दिन</strong></div>
                 <div class="data-row"><span>📈 ब्याज:</span> <strong id="uInt">₹0</strong></div>
+                <div class="data-row"><span>📊 वार्षिक लाभ:</span> <strong id="uPerc">0%</strong></div>
             </div>
-            <button class="btn" style="background:var(--secondary);" onclick="window.open('https://wa.me/917038164867')">WhatsApp Support</button>
-            <button class="btn" style="background:#666;" onclick="location.reload()">Logout</button>
+            <button class="btn" style="background:var(--secondary);" onclick="window.open('https://wa.me/917038164867')">सीधा व्हाट्सएप सपोर्ट</button>
+            <button class="btn" style="background:#666;" onclick="location.reload()">लॉगआउट</button>
         </div>
 
         <div id="settingsPage" class="hidden">
@@ -57,17 +61,25 @@
         </div>
     </div>
 
-    <button id="plusBtn" class="plus-btn" onclick="alert('नया निवेश करने के लिए व्हाट्सएप पर मैसेज भेजें')">+</button>
+    <div id="investModal" class="modal">
+        <div class="card" style="width: 80%; max-width: 350px;">
+            <h3 style="text-align:center; color:var(--primary);">नया निवेश फॉर्म</h3>
+            <input type="number" id="investAmt" placeholder="कितनी राशि निवेश करनी है?">
+            <button class="btn" onclick="sendInvestReq()">व्हाट्सएप पर भेजें</button>
+            <button class="btn" style="background:#eee; color:#333;" onclick="closeModal()">बंद करें</button>
+        </div>
+    </div>
+
+    <button id="plusBtn" class="plus-btn" onclick="openModal()">+</button>
 
     <script>
-        // AAPKA NAYA SCRIPT URL YAHAN HAI
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx93YTgj_eD0BJkDVBOlmSbQIYQDR0yO3TfxcuXpK-Mnptrxuhkd16gH-tBODyQUrvCgQ/exec';
         let userEmail = "";
 
         async function login() {
             userEmail = document.getElementById('email').value.trim();
             const pass = document.getElementById('password').value.trim();
-            if(!userEmail || !pass) return alert("Details fill karein");
+            if(!userEmail || !pass) return alert("विवरण भरें");
 
             try {
                 const res = await fetch(`${scriptURL}?action=login&email=${userEmail}&password=${pass}`);
@@ -75,16 +87,20 @@
                 
                 if(data.status === "success") {
                     document.getElementById('uName').innerText = "नमस्ते, " + data.name + "!";
-                    document.getElementById('uAmt').innerText = "₹" + data.amount;
-                    document.getElementById('uDays').innerText = data.days + " दिन";
-                    document.getElementById('uInt').innerText = "₹" + data.interest;
+                    document.getElementById('uAmt').innerText = "₹" + (data.amount || 0);
+                    // 'undefined' फिक्स:
+                    document.getElementById('uDays').innerText = (data.days || 0) + " दिन";
+                    document.getElementById('uInt').innerText = "₹" + (data.interest || 0);
                     
+                    let p = ((data.interest / data.amount) * 100).toFixed(2);
+                    document.getElementById('uPerc').innerText = isNaN(p) ? "0%" : p + "%";
+
                     document.getElementById('loginArea').classList.add('hidden');
                     document.getElementById('dashboardArea').classList.remove('hidden');
                     document.getElementById('setBtn').classList.remove('hidden');
                     document.getElementById('plusBtn').style.display = 'block';
-                } else { alert("Wrong ID or Password"); }
-            } catch(e) { alert("Server error! Connection check karein."); }
+                } else { alert("गलत आईडी या पासवर्ड"); }
+            } catch(e) { alert("सर्वर एरर!"); }
         }
 
         function toggleView(id) {
@@ -93,11 +109,23 @@
             document.getElementById(id).classList.remove('hidden');
         }
 
+        // फॉर्म फंक्शन
+        function openModal() { document.getElementById('investModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('investModal').style.display = 'none'; }
+        
+        function sendInvestReq() {
+            const amt = document.getElementById('investAmt').value;
+            if(!amt) return alert("राशि भरें");
+            const msg = `नमस्ते AK CAPITAL, मैं ₹${amt} का नया निवेश करना चाहता हूँ। मेरा ईमेल: ${userEmail}`;
+            window.open(`https://wa.me/917038164867?text=${encodeURIComponent(msg)}`);
+            closeModal();
+        }
+
         async function updatePass() {
             const np = document.getElementById('newPass').value;
-            if(!np) return alert("Naya password likhein");
+            if(!np) return alert("नया पासवर्ड लिखें");
             await fetch(`${scriptURL}?action=changePass&email=${userEmail}&newPass=${np}`);
-            alert("Password updated!");
+            alert("पासवर्ड बदल गया!");
         }
     </script>
 </body>
