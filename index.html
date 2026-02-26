@@ -10,43 +10,43 @@
         .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: 20px; width: 90%; max-width: 400px; text-align: center; }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
         button { background-color: #003366; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
-        .result { margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #e7f3ff; color: #003366; display: none; font-weight: bold; border: 1px solid #b3d7ff; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #e7f3ff; color: #003366; display: none; text-align: left; border: 1px solid #b3d7ff; }
         .whatsapp-btn { background-color: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 30px; display: inline-block; margin-top: 20px; font-weight: bold; font-size: 14px; }
         
         /* Popup Style */
         .guide-popup { display: block; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
-        .guide-content { background-color: white; margin: 20% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .guide-content { background-color: white; margin: 20% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; }
         
-        /* Terms Section */
-        .terms-section { font-size: 12px; color: #666; margin-top: 40px; border-top: 1px solid #ddd; padding: 20px; text-align: left; width: 90%; max-width: 500px; line-height: 1.5; }
+        /* Terms Style */
+        .terms-section { font-size: 12px; color: #666; margin-top: 40px; border-top: 1px solid #ddd; padding: 20px; text-align: left; width: 90%; max-width: 500px; }
     </style>
 </head>
 <body>
 
     <div id="userGuide" class="guide-popup">
         <div class="guide-content">
-            <h3 style="color: #003366; margin-top: 0;">AK CAPITAL गाइड</h3>
+            <h3 style="color: #003366;">AK CAPITAL गाइड</h3>
             <p style="text-align: left; font-size: 14px;">
-                1. अपना पंजीकृत ईमेल डालें।<br>
-                2. अपना पासवर्ड दर्ज करें।<br>
-                3. 'Login' दबाकर अपना निवेश (Investment) देखें।
+                1. अपना पंजीकृत ईमेल और पासवर्ड डालें।<br>
+                2. 'Login' दबाकर अपना निवेश और ब्याज देखें।<br>
+                3. मदद के लिए व्हाट्सएप बटन का उपयोग करें।
             </p>
-            <button onclick="document.getElementById('userGuide').style.display='none'">समझ गया</button>
+            <button style="width: auto;" onclick="document.getElementById('userGuide').style.display='none'">समझ गया</button>
         </div>
     </div>
 
     <div class="header">
         <h1>AK CAPITAL SERVICE</h1>
-        <p style="margin: 0; font-size: 14px;">Microfinance for Growth</p>
+        <p style="margin: 0;">Microfinance for Growth</p>
     </div>
 
     <div class="container">
-        <h3 style="color: #333; margin-top: 0;">इन्वेस्टर लॉगिन</h3>
-        <input type="email" id="email" placeholder="ईमेल आईडी (जैसे: user@gmail.com)" required>
+        <h3>इन्वेस्टर लॉगिन</h3>
+        <input type="email" id="email" placeholder="ईमेल आईडी" required>
         <input type="password" id="password" placeholder="पासवर्ड" required>
         
         <div style="text-align: right; margin-bottom: 15px;">
-            <a href="https://wa.me/917038164867?text=नमस्ते%20AK%20CAPITAL,%20मैं%20अपना%20पासवर्ड%20भूल%20गया%20हूँ।" style="color: #003366; text-decoration: none; font-size: 13px; font-weight: bold;">पासवर्ड भूल गए?</a>
+            <a href="https://wa.me/917038164867?text=पासवर्ड%20भूल%20गया%20हूँ" style="color: #003366; text-decoration: none; font-size: 13px;">पासवर्ड भूल गए?</a>
         </div>
 
         <button onclick="checkInvestment()">Login</button>
@@ -57,10 +57,10 @@
     </div>
 
     <div class="terms-section">
-        <h4 style="text-align: center; color: #003366; margin-top: 0;">नियम और शर्तें</h4>
-        <p>• ऐप में दिखाई गई राशि आपके द्वारा दिए गए डेटा पर आधारित है।</p>
+        <h4 style="text-align: center; color: #003366;">नियम और शर्तें</h4>
+        <p>• ऐप में दिखाई गई राशि आपके डेटा पर आधारित है।</p>
         <p>• अपना लॉगिन क्रेडेंशियल किसी के साथ साझा न करें।</p>
-        <p>• किसी भी प्रश्न के लिए सीधे व्हाट्सएप सपोर्ट पर संपर्क करें।</p>
+        <p>• AK CAPITAL के पास नियमों में बदलाव का अधिकार सुरक्षित है।</p>
     </div>
 
     <script>
@@ -69,35 +69,31 @@
             const password = document.getElementById('password').value.trim();
             const resultDiv = document.getElementById('result');
             
-            if(!email || !password) {
-                alert('कृपया ईमेल और पासवर्ड दोनों भरें।');
-                return;
-            }
+            if(!email || !password) { alert('कृपया जानकारी भरें'); return; }
 
             resultDiv.style.display = 'block';
-            resultDiv.style.backgroundColor = '#e7f3ff';
-            resultDiv.innerHTML = 'डेटा चेक किया जा रहा है...';
+            resultDiv.innerHTML = 'डेटा लोड हो रहा है...';
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzf98awmkQU9CgJVRIkbk9SwbmVwWxASjRDAj5Zehylb0e4PVbj0RTmaBbVBsTn6Fg_bA/exec';
+            // आपका नया और सही लिंक
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx0zhXeuO6_3GbC06L9e94-xTz0Jm9Vq_dB-_YVX9arD8ANi7zpkTJEH_VGcze4ID8K5g/exec';
 
             try {
                 const response = await fetch(`${scriptURL}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
                 const data = await response.json();
 
-                if (data.status === "success" && data.amount !== undefined) {
-                    resultDiv.style.backgroundColor = '#d4edda';
-                    resultDiv.style.color = '#155724';
-                    resultDiv.innerHTML = `नमस्ते!<br>आपका कुल निवेश है: <strong>₹${data.amount}</strong>`;
+                if (data.status === "success") {
+                    resultDiv.innerHTML = `
+                        <p><strong>नमस्ते, ${data.name}!</strong></p>
+                        <p>💰 <b>कुल निवेश:</b> ₹${data.amount}</p>
+                        <hr>
+                        <p style="font-size: 14px;">📅 <b>कुल दिन:</b> ${data.days || '0'}</p>
+                        <p style="font-size: 14px;">📈 <b>अनुमानित ब्याज:</b> ₹${data.interest || '0'}</p>
+                    `;
                 } else {
-                    resultDiv.style.backgroundColor = '#f8d7da';
-                    resultDiv.style.color = '#721c24';
-                    resultDiv.innerHTML = 'गलत ईमेल या पासवर्ड। कृपया पुनः प्रयास करें।';
+                    resultDiv.innerHTML = '❌ गलत ईमेल या पासवर्ड।';
                 }
             } catch (error) {
-                console.error('Error:', error);
-                resultDiv.style.backgroundColor = '#fff3cd';
-                resultDiv.style.color = '#856404';
-                resultDiv.innerHTML = 'सर्वर से संपर्क नहीं हो पाया। कृपया इंटरनेट चेक करें या व्हाट्सएप पर पूछें।';
+                resultDiv.innerHTML = '⚠️ सर्वर एरर। व्हाट्सएप पर संपर्क करें।';
             }
         }
     </script>
