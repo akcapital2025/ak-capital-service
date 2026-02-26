@@ -3,115 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK CAPITAL SERVICE | राजनांदगांव</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>AK CAPITAL SERVICE</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #f0f2f5; color: #333; }
-        header { background-color: #ffffff; color: #004d99; padding: 30px 0; text-align: center; border-bottom: 4px solid #004d99; }
-        .logo-img { max-width: 130px; height: auto; margin-bottom: 15px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; }
+        body { font-family: 'Arial', sans-serif; background-color: #f4f7f9; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .header { background-color: #003366; color: white; width: 100%; text-align: center; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: 20px; width: 90%; max-width: 400px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        button { background-color: #003366; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #e7f3ff; color: #003366; display: none; font-weight: bold; border: 1px solid #b3d7ff; }
+        .whatsapp-btn { background-color: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 30px; display: inline-block; margin-top: 20px; font-weight: bold; font-size: 14px; }
         
-        nav { background-color: #004d99; color: #fff; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: #fff; text-decoration: none; padding: 8px 15px; font-weight: bold; font-size: 0.9rem; }
-        .investor-nav-btn { background: #e67e22; border-radius: 5px; transition: 0.3s; margin-left: 5px; }
-
-        .container { width: 90%; max-width: 1000px; margin: auto; padding: 20px; }
-        .section { background: #fff; padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* Popup Style */
+        .guide-popup { display: block; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
+        .guide-content { background-color: white; margin: 20% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         
-        .portal-btn { text-decoration: none; background: #004d99; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; margin-top: 20px; }
-        
-        .team-card { background: #f9fcff; padding: 20px; border-radius: 10px; border-left: 5px solid #004d99; margin-bottom: 15px; }
-        
-        /* लोन प्रोडक्ट्स स्टाइल */
-        .product-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
-        .product-card { background: #fff; border: 1px solid #004d99; padding: 20px; border-radius: 10px; flex: 1; min-width: 250px; position: relative; }
-        .price-tag { background: #004d99; color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
-
-        .portfolio-box { background: linear-gradient(135deg, #004d99, #0073e6); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 25px; }
-        .portfolio-number { font-size: 2.8rem; font-weight: bold; margin: 10px 0; }
-        
-        footer { background:#333; color:#fff; text-align:center; padding:20px; margin-top: 30px; }
-        @media(max-width: 768px) { .product-grid { flex-direction: column; } }
+        /* Terms Section */
+        .terms-section { font-size: 12px; color: #666; margin-top: 40px; border-top: 1px solid #ddd; padding: 20px; text-align: left; width: 90%; max-width: 500px; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="1772023755259.png" alt="AK Capital Logo" class="logo-img">
-        <h1>AK CAPITAL SERVICE</h1>
-    </header>
-
-    <nav>
-        <a href="#about">जानकारी</a>
-        <a href="#team">मैनेजमेंट</a>
-        <a href="#products">प्रोडक्ट्स</a>
-        <a href="investor.html" class="investor-nav-btn"><i class="fas fa-lock"></i> इन्वेस्टर लॉगिन</a>
-        <a href="#contact">संपर्क</a>
-    </nav>
-
-    <div class="container">
-        
-        <div id="about" class="section">
-            <h2>कंपनी की जानकारी</h2>
-            <p><strong>AK CAPITAL SERVICE</strong> राजनांदगांव (छत्तीसगढ़) की एक प्रमुख वित्तीय संस्थान है। हम छोटे व्यापारियों और परिवारों को पारदर्शी तरीके से वित्तीय सहायता प्रदान करते हैं।</p>
-            <div style="text-align: center;">
-                <a href="investor.html" class="portal-btn">इन्वेस्टर पोर्टल लॉगिन करें</a>
-            </div>
+    <div id="userGuide" class="guide-popup">
+        <div class="guide-content">
+            <h3 style="color: #003366; margin-top: 0;">AK CAPITAL गाइड</h3>
+            <p style="text-align: left; font-size: 14px;">
+                1. अपना पंजीकृत ईमेल डालें।<br>
+                2. अपना पासवर्ड दर्ज करें।<br>
+                3. 'Login' दबाकर अपना निवेश (Investment) देखें।
+            </p>
+            <button onclick="document.getElementById('userGuide').style.display='none'">समझ गया</button>
         </div>
-
-        <div id="team" class="section">
-            <h2>मैनेजिंग टीम</h2>
-            <div class="team-card">
-                <h3>युवराज देवांगन</h3>
-                <span>Co-founder & CEO</span>
-                <p>15 महीने का <strong>Svasti Microfinance</strong> (CRO Post) में कार्य अनुभव।</p>
-            </div>
-            <div class="team-card">
-                <h3>चंद्रभान देवांगन</h3>
-                <span>Co-founder & CFO</span>
-                <p>2 साल का कैमरा शूटिंग और मैनेजमेंट अनुभव।</p>
-            </div>
-        </div>
-
-        <div id="products" class="section">
-            <h2>हमारे लोन प्रोडक्ट्स</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="price-tag">Emergency Loan</div>
-                    <h3 style="color:#004d99; margin-top:0;">निधि (Nidhi)</h3>
-                    <p><strong>अवधि:</strong> 1 महीना</p>
-                    <p><strong>ब्याज:</strong> 10% Flat</p>
-                    <p style="font-size: 0.9rem; color: #666;">आपातकालीन जरूरतों के लिए त्वरित ऋण।</p>
-                </div>
-                <div class="product-card">
-                    <div class="price-tag">Short Term Loan</div>
-                    <h3 style="color:#004d99; margin-top:0;">स्वाति (Swati)</h3>
-                    <p><strong>अवधि:</strong> 6 महीने</p>
-                    <p><strong>ब्याज:</strong> 7% Reducing</p>
-                    <p style="font-size: 0.9rem; color: #666;">छोटे व्यापार को बढ़ाने के लिए आसान किस्तें।</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="portfolio" class="portfolio-box">
-            <div style="text-transform: uppercase; letter-spacing: 1px;">वर्तमान लोन पोर्टफोलियो</div>
-            <div class="portfolio-number">₹ 1,70,500/-</div>
-            <p>राजनांदगांव के विकास में हमारा योगदान</p>
-        </div>
-
-        <div id="contact" class="section">
-            <h2>संपर्क एवं सहायता</h2>
-            <p>📍 <strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, दिग्विजय स्टेडियम रोड, राजनांदगांव, 491441</p>
-            <hr>
-            <p>👤 <strong>युवराज देवांगन (CEO)</strong><br>📞 7038164867 | 📧 dewanganyuraj223@gmail.com</p>
-            <p>👤 <strong>चंद्रभान देवांगन (CFO)</strong><br>📞 8815719435 | 📧 nitin.akcapital2025@gmail.com</p>
-        </div>
-
     </div>
 
-    <footer>
-        <p>&copy; 2026 AK CAPITAL SERVICE | राजनांदगांव</p>
-    </footer>
+    <div class="header">
+        <h1>AK CAPITAL SERVICE</h1>
+        <p style="margin: 0; font-size: 14px;">Microfinance for Growth</p>
+    </div>
 
+    <div class="container">
+        <h3 style="color: #333; margin-top: 0;">इन्वेस्टर लॉगिन</h3>
+        <input type="email" id="email" placeholder="ईमेल आईडी (जैसे: user@gmail.com)" required>
+        <input type="password" id="password" placeholder="पासवर्ड" required>
+        
+        <div style="text-align: right; margin-bottom: 15px;">
+            <a href="https://wa.me/917038164867?text=नमस्ते%20AK%20CAPITAL,%20मैं%20अपना%20पासवर्ड%20भूल%20गया%20हूँ।" style="color: #003366; text-decoration: none; font-size: 13px; font-weight: bold;">पासवर्ड भूल गए?</a>
+        </div>
+
+        <button onclick="checkInvestment()">Login</button>
+
+        <div id="result" class="result"></div>
+
+        <a href="https://wa.me/917038164867" class="whatsapp-btn">💬 WhatsApp सहायता</a>
+    </div>
+
+    <div class="terms-section">
+        <h4 style="text-align: center; color: #003366; margin-top: 0;">नियम और शर्तें</h4>
+        <p>• ऐप में दिखाई गई राशि आपके द्वारा दिए गए डेटा पर आधारित है।</p>
+        <p>• अपना लॉगिन क्रेडेंशियल किसी के साथ साझा न करें।</p>
+        <p>• किसी भी प्रश्न के लिए सीधे व्हाट्सएप सपोर्ट पर संपर्क करें।</p>
+    </div>
+
+    <script>
+        async function checkInvestment() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const resultDiv = document.getElementById('result');
+            
+            if(!email || !password) {
+                alert('कृपया ईमेल और पासवर्ड दोनों भरें।');
+                return;
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.style.backgroundColor = '#e7f3ff';
+            resultDiv.innerHTML = 'डेटा चेक किया जा रहा है...';
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzf98awmkQU9CgJVRIkbk9SwbmVwWxASjRDAj5Zehylb0e4PVbj0RTmaBbVBsTn6Fg_bA/exec';
+
+            try {
+                const response = await fetch(`${scriptURL}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+                const data = await response.json();
+
+                if (data.status === "success" && data.amount !== undefined) {
+                    resultDiv.style.backgroundColor = '#d4edda';
+                    resultDiv.style.color = '#155724';
+                    resultDiv.innerHTML = `नमस्ते!<br>आपका कुल निवेश है: <strong>₹${data.amount}</strong>`;
+                } else {
+                    resultDiv.style.backgroundColor = '#f8d7da';
+                    resultDiv.style.color = '#721c24';
+                    resultDiv.innerHTML = 'गलत ईमेल या पासवर्ड। कृपया पुनः प्रयास करें।';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.style.backgroundColor = '#fff3cd';
+                resultDiv.style.color = '#856404';
+                resultDiv.innerHTML = 'सर्वर से संपर्क नहीं हो पाया। कृपया इंटरनेट चेक करें या व्हाट्सएप पर पूछें।';
+            }
+        }
+    </script>
 </body>
 </html>
