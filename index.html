@@ -5,67 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AK CAPITAL SERVICE</title>
     <style>
-        body { font-family: sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
-        .header { background-color: #003366; color: white; width: 100%; text-align: center; padding: 15px 0; }
-        .login-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 20px; width: 85%; max-width: 350px; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
-        .login-btn { background-color: #003366; color: white; padding: 12px; border: none; border-radius: 5px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; }
-        .result-box { margin-top: 15px; padding: 15px; border-radius: 5px; display: none; text-align: left; line-height: 1.5; }
-        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .wa-btn { background-color: #25D366; color: white; padding: 10px; text-decoration: none; border-radius: 5px; display: block; margin-top: 15px; text-align: center; font-weight: bold; }
+        :root { --primary: #003366; --secondary: #25D366; --bg: #f4f7f9; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); transition: 0.3s; }
+        .header { background: var(--primary); color: white; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+        .container { padding: 20px; max-width: 500px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        .btn { background: var(--primary); color: white; padding: 12px; border: none; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .plus-btn { position: fixed; bottom: 30px; right: 30px; background: var(--secondary); color: white; width: 60px; height: 60px; border-radius: 50%; font-size: 30px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; display: none; }
+        .hidden { display: none; }
+        .lang-badge { font-size: 12px; background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 20px; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h2 style="margin:0;">AK CAPITAL SERVICE</h2>
+        <div style="width: 40px;"></div> <div>
+            <h1 style="margin:0; font-size: 20px;">AK CAPITAL SERVICE</h1>
+            <p id="tagline" style="margin:0; font-size: 11px;">Microfinance for Growth</p>
+        </div>
+        <div id="settingsBtn" class="hidden" onclick="showPage('settingsPage')" style="font-size: 24px; cursor: pointer;">⚙️</div>
     </div>
 
-    <div class="login-card">
-        <h3 style="margin-top:0; color:#333;">लॉगिन करें</h3>
-        <input type="email" id="email" placeholder="ईमेल आईडी" required>
-        <input type="password" id="password" placeholder="पासवर्ड" required>
-        <button class="login-btn" onclick="login()">Login</button>
+    <div class="container">
         
-        <div id="result" class="result-box"></div>
-        
-        <a href="https://wa.me/917038164867" class="wa-btn">💬 सहायता के लिए व्हाट्सएप करें</a>
+        <div id="loginPage">
+            <div class="card">
+                <h3 id="loginTitle">इन्वेस्टर लॉगिन</h3>
+                <input type="email" id="email" placeholder="ईमेल आईडी (Email ID)">
+                <input type="password" id="password" placeholder="पासवर्ड (Password)">
+                <button class="btn" id="loginBtn" onclick="login()">लॉगिन (Login)</button>
+            </div>
+        </div>
+
+        <div id="homePage" class="hidden">
+            <h3 id="welcomeText" style="color: var(--primary);">नमस्ते!</h3>
+            <div class="card">
+                <p>💰 <span id="labelInv">कुल निवेश:</span> ₹<span id="amt">0</span></p>
+                <p>📅 <span id="labelDays">अवधि:</span> <span id="days">0</span> <span id="labelDays2">दिन</span></p>
+                <p>📈 <span id="labelInt">ब्याज:</span> ₹<span id="int">0</span></p>
+            </div>
+            
+            <div class="card">
+                <h4 id="labelAbout">About Company</h4>
+                <p id="aboutText" style="font-size: 14px; color: #555;">AK CAPITAL SERVICE माइक्रोफाइनेंस के क्षेत्र में विकास के लिए प्रतिबद्ध है।</p>
+            </div>
+        </div>
+
+        <div id="settingsPage" class="hidden">
+            <div class="card">
+                <h3 id="labelSettings">Settings</h3>
+                <div class="lang-badge" onclick="toggleLanguage()" style="background: var(--primary); color: white; text-align: center; margin-bottom: 15px;">
+                    🌐 Change Language: <span id="currentLang">Hindi</span>
+                </div>
+                <input type="password" id="newPass" placeholder="नया पासवर्ड (New Password)">
+                <button class="btn" id="updatePassBtn" onclick="changePassword()">पासवर्ड बदलें (Update Password)</button>
+                <hr style="margin: 20px 0;">
+                <button class="btn" id="withdrawBtn" style="background:orange;" onclick="alert('Withdrawal Applied!')">Withdrawal Apply</button>
+                <button class="btn" id="logoutBtn" style="background:red;" onclick="location.reload()">लॉगआउट (Logout)</button>
+                <button class="btn" id="backBtn" style="background:#666;" onclick="showPage('homePage')">वापस (Back)</button>
+            </div>
+        </div>
+
     </div>
 
-    <div style="padding: 20px; font-size: 12px; color: #666; text-align: center;">
-        <p>© 2026 AK CAPITAL SERVICE</p>
-    </div>
+    <button id="investPlus" class="plus-btn" onclick="window.open('https://wa.me/917038164867?text=Hi,%20I%20want%20to%20invest')">+</button>
 
     <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx0zhXeuO6_3GbC06L9e94-xTz0Jm9Vq_dB-_YVX9arD8ANi7zpkTJEH_VGcze4ID8K5g/exec';
+        let currentLang = 'hi';
+        let userEmail = "";
+
+        const textData = {
+            hi: {
+                tagline: "Microfinance for Growth", loginTitle: "इन्वेस्टर लॉगिन", loginBtn: "लॉगिन", welcome: "नमस्ते, ", 
+                labelInv: "कुल निवेश:", labelDays: "अवधि:", labelDays2: "दिन", labelInt: "ब्याज:", 
+                labelAbout: "कंपनी के बारे में", about: "AK CAPITAL SERVICE माइक्रोफाइनेंस के क्षेत्र में विकास के लिए प्रतिबद्ध है।",
+                labelSettings: "सेटिंग्स", updatePass: "पासवर्ड बदलें", logout: "लॉगआउट", back: "वापस", withdraw: "विड्रॉल के लिए अप्लाई करें"
+            },
+            en: {
+                tagline: "Empowering Growth", loginTitle: "Investor Login", loginBtn: "Login", welcome: "Welcome, ", 
+                labelInv: "Total Investment:", labelDays: "Duration:", labelDays2: "Days", labelInt: "Interest:", 
+                labelAbout: "About Company", about: "AK CAPITAL SERVICE is committed to growth in the microfinance sector.",
+                labelSettings: "Settings", updatePass: "Update Password", logout: "Logout", back: "Back", withdraw: "Apply for Withdrawal"
+            }
+        };
+
         async function login() {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const res = document.getElementById('result');
-
-            if(!email || !password) { alert("विवरण भरें"); return; }
-
-            res.style.display = "block";
-            res.className = "result-box"; 
-            res.innerHTML = "चेक किया जा रहा है...";
-
-            const url = 'https://script.google.com/macros/s/AKfycbx0zhXeuO6_3GbC06L9e94-xTz0Jm9Vq_dB-_YVX9arD8ANi7zpkTJEH_VGcze4ID8K5g/exec';
+            userEmail = document.getElementById('email').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            if(!userEmail || !pass) return alert("Please fill details");
 
             try {
-                const response = await fetch(`${url}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
-                const data = await response.json();
-
+                const res = await fetch(`${scriptURL}?action=login&email=${userEmail}&password=${pass}`);
+                const data = await res.json();
+                
                 if(data.status === "success") {
-                    res.classList.add("success");
-                    res.innerHTML = `<b>नमस्ते, ${data.name}</b><br>💰 निवेश: ₹${data.amount}<br>📅 दिन: ${data.days || 0}<br>📈 ब्याज: ₹${data.interest || 0}`;
-                } else {
-                    res.classList.add("error");
-                    res.innerHTML = "गलत ईमेल या पासवर्ड।";
-                }
-            } catch(e) {
-                res.classList.add("error");
-                res.innerHTML = "सर्वर से संपर्क नहीं हुआ।";
-            }
+                    document.getElementById('welcomeText').innerText = textData[currentLang].welcome + data.name;
+                    document.getElementById('amt').innerText = data.amount;
+                    document.getElementById('days').innerText = data.days;
+                    document.getElementById('int').innerText = data.interest;
+                    
+                    showPage('homePage');
+                    document.getElementById('settingsBtn').classList.remove('hidden');
+                    document.getElementById('investPlus').style.display = 'block';
+                } else { alert("Error: Wrong ID/Password"); }
+            } catch(e) { alert("Server connection failed"); }
+        }
+
+        async function changePassword() {
+            const newP = document.getElementById('newPass').value;
+            if(!newP) return alert("Enter new password");
+            await fetch(`${scriptURL}?action=changePass&email=${userEmail}&newPass=${newP}`);
+            alert(currentLang === 'hi' ? "पासवर्ड अपडेट हो गया!" : "Password Updated!");
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'hi') ? 'en' : 'hi';
+            document.getElementById('currentLang').innerText = currentLang === 'hi' ? 'Hindi' : 'English';
+            updateUI();
+        }
+
+        function updateUI() {
+            const d = textData[currentLang];
+            document.getElementById('tagline').innerText = d.tagline;
+            document.getElementById('loginTitle').innerText = d.loginTitle;
+            document.getElementById('loginBtn').innerText = d.loginBtn;
+            document.getElementById('labelInv').innerText = d.labelInv;
+            document.getElementById('labelDays').innerText = d.labelDays;
+            document.getElementById('labelDays2').innerText = d.labelDays2;
+            document.getElementById('labelInt').innerText = d.labelInt;
+            document.getElementById('labelAbout').innerText = d.labelAbout;
+            document.getElementById('aboutText').innerText = d.about;
+            document.getElementById('labelSettings').innerText = d.labelSettings;
+            document.getElementById('updatePassBtn').innerText = d.updatePass;
+            document.getElementById('withdrawBtn').innerText = d.withdraw;
+            document.getElementById('logoutBtn').innerText = d.logout;
+            document.getElementById('backBtn').innerText = d.back;
+        }
+
+        function showPage(id) {
+            ['loginPage', 'homePage', 'settingsPage'].forEach(p => document.getElementById(p).classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
         }
     </script>
 </body>
