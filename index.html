@@ -5,95 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AK CAPITAL SERVICE</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #f4f7f9; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
-        .header { background-color: #003366; color: white; width: 100%; text-align: center; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: 20px; width: 90%; max-width: 400px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        button { background-color: #003366; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
-        .result { margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #e7f3ff; color: #003366; display: none; text-align: left; border: 1px solid #b3d7ff; }
-        .whatsapp-btn { background-color: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 30px; display: inline-block; margin-top: 20px; font-weight: bold; font-size: 14px; }
-        
-        /* Popup Style */
-        .guide-popup { display: block; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
-        .guide-content { background-color: white; margin: 20% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; }
-        
-        /* Terms Style */
-        .terms-section { font-size: 12px; color: #666; margin-top: 40px; border-top: 1px solid #ddd; padding: 20px; text-align: left; width: 90%; max-width: 500px; }
+        body { font-family: sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .header { background-color: #003366; color: white; width: 100%; text-align: center; padding: 15px 0; }
+        .login-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 20px; width: 85%; max-width: 350px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        .login-btn { background-color: #003366; color: white; padding: 12px; border: none; border-radius: 5px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .result-box { margin-top: 15px; padding: 15px; border-radius: 5px; display: none; text-align: left; line-height: 1.5; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .wa-btn { background-color: #25D366; color: white; padding: 10px; text-decoration: none; border-radius: 5px; display: block; margin-top: 15px; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div id="userGuide" class="guide-popup">
-        <div class="guide-content">
-            <h3 style="color: #003366;">AK CAPITAL गाइड</h3>
-            <p style="text-align: left; font-size: 14px;">
-                1. अपना पंजीकृत ईमेल और पासवर्ड डालें।<br>
-                2. 'Login' दबाकर अपना निवेश और ब्याज देखें।<br>
-                3. मदद के लिए व्हाट्सएप बटन का उपयोग करें।
-            </p>
-            <button style="width: auto;" onclick="document.getElementById('userGuide').style.display='none'">समझ गया</button>
-        </div>
-    </div>
-
     <div class="header">
-        <h1>AK CAPITAL SERVICE</h1>
-        <p style="margin: 0;">Microfinance for Growth</p>
+        <h2 style="margin:0;">AK CAPITAL SERVICE</h2>
     </div>
 
-    <div class="container">
-        <h3>इन्वेस्टर लॉगिन</h3>
+    <div class="login-card">
+        <h3 style="margin-top:0; color:#333;">लॉगिन करें</h3>
         <input type="email" id="email" placeholder="ईमेल आईडी" required>
         <input type="password" id="password" placeholder="पासवर्ड" required>
+        <button class="login-btn" onclick="login()">Login</button>
         
-        <div style="text-align: right; margin-bottom: 15px;">
-            <a href="https://wa.me/917038164867?text=पासवर्ड%20भूल%20गया%20हूँ" style="color: #003366; text-decoration: none; font-size: 13px;">पासवर्ड भूल गए?</a>
-        </div>
-
-        <button onclick="checkInvestment()">Login</button>
-
-        <div id="result" class="result"></div>
-
-        <a href="https://wa.me/917038164867" class="whatsapp-btn">💬 WhatsApp सहायता</a>
+        <div id="result" class="result-box"></div>
+        
+        <a href="https://wa.me/917038164867" class="wa-btn">💬 सहायता के लिए व्हाट्सएप करें</a>
     </div>
 
-    <div class="terms-section">
-        <h4 style="text-align: center; color: #003366;">नियम और शर्तें</h4>
-        <p>• ऐप में दिखाई गई राशि आपके डेटा पर आधारित है।</p>
-        <p>• अपना लॉगिन क्रेडेंशियल किसी के साथ साझा न करें।</p>
-        <p>• AK CAPITAL के पास नियमों में बदलाव का अधिकार सुरक्षित है।</p>
+    <div style="padding: 20px; font-size: 12px; color: #666; text-align: center;">
+        <p>© 2026 AK CAPITAL SERVICE</p>
     </div>
 
     <script>
-        async function checkInvestment() {
+        async function login() {
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
-            const resultDiv = document.getElementById('result');
-            
-            if(!email || !password) { alert('कृपया जानकारी भरें'); return; }
+            const res = document.getElementById('result');
 
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = 'डेटा लोड हो रहा है...';
+            if(!email || !password) { alert("विवरण भरें"); return; }
 
-            // आपका नया और सही लिंक
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbx0zhXeuO6_3GbC06L9e94-xTz0Jm9Vq_dB-_YVX9arD8ANi7zpkTJEH_VGcze4ID8K5g/exec';
+            res.style.display = "block";
+            res.className = "result-box"; 
+            res.innerHTML = "चेक किया जा रहा है...";
+
+            const url = 'https://script.google.com/macros/s/AKfycbx0zhXeuO6_3GbC06L9e94-xTz0Jm9Vq_dB-_YVX9arD8ANi7zpkTJEH_VGcze4ID8K5g/exec';
 
             try {
-                const response = await fetch(`${scriptURL}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+                const response = await fetch(`${url}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
                 const data = await response.json();
 
-                if (data.status === "success") {
-                    resultDiv.innerHTML = `
-                        <p><strong>नमस्ते, ${data.name}!</strong></p>
-                        <p>💰 <b>कुल निवेश:</b> ₹${data.amount}</p>
-                        <hr>
-                        <p style="font-size: 14px;">📅 <b>कुल दिन:</b> ${data.days || '0'}</p>
-                        <p style="font-size: 14px;">📈 <b>अनुमानित ब्याज:</b> ₹${data.interest || '0'}</p>
-                    `;
+                if(data.status === "success") {
+                    res.classList.add("success");
+                    res.innerHTML = `<b>नमस्ते, ${data.name}</b><br>💰 निवेश: ₹${data.amount}<br>📅 दिन: ${data.days || 0}<br>📈 ब्याज: ₹${data.interest || 0}`;
                 } else {
-                    resultDiv.innerHTML = '❌ गलत ईमेल या पासवर्ड।';
+                    res.classList.add("error");
+                    res.innerHTML = "गलत ईमेल या पासवर्ड।";
                 }
-            } catch (error) {
-                resultDiv.innerHTML = '⚠️ सर्वर एरर। व्हाट्सएप पर संपर्क करें।';
+            } catch(e) {
+                res.classList.add("error");
+                res.innerHTML = "सर्वर से संपर्क नहीं हुआ।";
             }
         }
     </script>
