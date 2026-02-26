@@ -13,18 +13,23 @@
         
         nav { background-color: #004d99; color: #fff; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 1000; }
         nav a { color: #fff; text-decoration: none; padding: 8px 15px; font-weight: bold; font-size: 0.9rem; }
-        .investor-nav-btn { background: #e67e22; border-radius: 5px; transition: 0.3s; }
+        .investor-nav-btn { background: #e67e22; border-radius: 5px; transition: 0.3s; padding: 10px 20px !important; }
 
         .container { width: 90%; max-width: 1000px; margin: auto; padding: 20px; }
         .section { background: #fff; padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         
-        .portal-btn { text-decoration: none; background: #004d99; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; }
-        .portal-btn:hover { transform: translateY(-3px); background: #003366; }
+        h2 { color: #004d99; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .leadership-text { font-style: italic; color: #555; margin-bottom: 20px; border-left: 4px solid #e67e22; padding-left: 15px; }
 
-        .team-card { background: #f9fcff; padding: 20px; border-radius: 10px; border-left: 5px solid #004d99; margin-bottom: 15px; }
-        .product-card { background: #fff; border: 1px solid #004d99; padding: 20px; border-radius: 10px; flex: 1; min-width: 250px; }
+        .team-card { background: #f9fcff; padding: 20px; border-radius: 10px; border-left: 5px solid #004d99; margin-bottom: 15px; transition: 0.3s; }
+        .team-card:hover { transform: translateX(10px); background: #f0f7ff; }
+        .team-card h3 { margin: 0; color: #004d99; }
+        .designation { font-weight: bold; color: #e67e22; display: block; margin-bottom: 8px; }
+
         .portfolio-box { background: linear-gradient(135deg, #004d99, #0073e6); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 25px; }
         .portfolio-number { font-size: 2.8rem; font-weight: bold; margin: 10px 0; }
+        
+        .portal-btn { text-decoration: none; background: #004d99; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; }
         footer { background:#333; color:#fff; text-align:center; padding:20px; margin-top: 30px; }
     </style>
 </head>
@@ -38,7 +43,7 @@
     <nav>
         <a href="#about">जानकारी</a>
         <a href="#team">मैनेजमेंट</a>
-        <a href="#products">प्रोडक्ट्स</a>
+        <a href="#portfolio">पोर्टफोलियो</a>
         <a href="investor.html" class="investor-nav-btn"><i class="fas fa-lock"></i> इन्वेस्टर लॉगिन</a>
         <a href="#contact">संपर्क</a>
     </nav>
@@ -47,35 +52,38 @@
         
         <div id="about" class="section">
             <h2>कंपनी की जानकारी</h2>
-            <p><strong>AK CAPITAL SERVICE</strong> राजनांदगांव (छत्तीसगढ़) की एक प्रमुख वित्तीय संस्थान है। हम छोटे व्यापारियों और परिवारों को पारदर्शी तरीके से वित्तीय सहायता प्रदान करते हैं।</p>
+            <p><strong>AK CAPITAL SERVICE</strong> राजनांदगांव (छत्तीसगढ़) की एक प्रमुख वित्तीय संस्थान है। हम छोटे व्यापारियों और परिवारों को पारदर्शी तरीके से वित्तीय सहायता प्रदान करते हैं। हमारा लक्ष्य तकनीक और अनुभव के माध्यम से आर्थिक सशक्तिकरण लाना है।</p>
             <div style="text-align: center; margin-top: 20px;">
                 <a href="investor.html" class="portal-btn">इन्वेस्टर पोर्टल लॉगिन करें</a>
             </div>
         </div>
 
         <div id="team" class="section">
-            <h2>मैनेजिंग टीम</h2>
+            <h2>हमारी नेतृत्व शक्ति (Leadership)</h2>
+            <p class="leadership-text">"AK CAPITAL SERVICE का नेतृत्व दो ऐसे युवा और दूरदर्शी विशेषज्ञों के हाथों में है, जो वित्तीय अनुशासन और सामाजिक विकास के प्रति समर्पित हैं।"</p>
+            
             <div class="team-card">
                 <h3>युवराज देवांगन</h3>
-                <span>Co-founder & CEO</span>
-                <p>15 महीने का <strong>Svasti Microfinance</strong> (CRO Post) में कार्य अनुभव।</p>
+                <span class="designation">Co-founder & CEO</span>
+                <p>सूक्ष्म वित्त (Microfinance) क्षेत्र के गहरे जानकार युवराज जी के पास <strong>Svasti Microfinance</strong> जैसी प्रतिष्ठित संस्था में <strong>CRO</strong> के पद पर कार्य करने का ठोस अनुभव है। उनकी विशेषज्ञता जोखिम प्रबंधन और रणनीतिक योजना बनाने में है।</p>
             </div>
+            
             <div class="team-card">
                 <h3>चंद्रभान देवांगन</h3>
-                <span>Co-founder & CFO</span>
-                <p>2 साल का कैमरा शूटिंग और मैनेजमेंट अनुभव।</p>
+                <span class="designation">Co-founder & CFO</span>
+                <p>वित्तीय प्रबंधन और ऑपरेशनल उत्कृष्टता के धनी चंद्रभान जी, कंपनी के आर्थिक ढांचे को मजबूती प्रदान करते हैं। उनका अनुभव संस्था के पारदर्शी और सटीक प्रबंधन को सुनिश्चित करता है।</p>
             </div>
         </div>
 
         <div id="portfolio" class="portfolio-box">
             <div style="text-transform: uppercase; letter-spacing: 1px;">वर्तमान लोन पोर्टफोलियो</div>
             <div class="portfolio-number">₹ 1,70,500/-</div>
-            <p>भरोसेमंद वित्तीय सेवा</p>
+            <p>विश्वसनीय एवं सुरक्षित वित्तीय सेवा</p>
         </div>
 
         <div id="contact" class="section">
             <h2>संपर्क एवं सहायता</h2>
-            <p>📍 <strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, राजनांदगांव, 491441</p>
+            <p>📍 <strong>पता:</strong> आनंद टावर, दूसरी मंजिल, सहदेव नगर, राजनांदगांव, छत्तीसगढ़ - 491441</p>
             <hr>
             <p>👤 <strong>युवराज देवांगन (CEO)</strong><br>📞 7038164867 | 📧 dewanganyuraj223@gmail.com</p>
             <p>👤 <strong>चंद्रभान देवांगन (CFO)</strong><br>📞 8815719435 | 📧 nitin.akcapital2025@gmail.com</p>
@@ -84,7 +92,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 AK CAPITAL SERVICE | राजनांदगांव</p>
+        <p>&copy; 2026 AK CAPITAL SERVICE | राजनांदगांव - छत्तीसगढ़</p>
     </footer>
 
 </body>
